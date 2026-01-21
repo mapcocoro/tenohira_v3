@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', 'Zen Maru Gothic', sans-serif;
+  color: #606060;
+  background-color: #fffbe6;
+  line-height: 1.8;
+}
+
+/* コンテナ */
+.container {
+  @apply max-w-5xl mx-auto px-4;
+}
+
+/* セクション */
+.section {
+  @apply py-12 md:py-16;
+}
+
+.section-title {
+  @apply text-xl md:text-2xl font-bold text-center mb-2;
+  color: #403f3b;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.section-subtitle {
+  @apply text-center text-sm mb-8;
+  color: #888888;
+}
+
+/* カード */
+.card {
+  @apply bg-white rounded-xl shadow-card p-5 transition-all duration-300;
+}
+
+.card:hover {
+  @apply shadow-hover;
+}
+
+/* ボタン */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 font-medium py-3 px-6 rounded-full transition-all duration-300;
+}
+
+.btn-primary {
+  @apply btn text-white;
+  background-color: #e8b000;
+}
+
+.btn-primary:hover {
+  background-color: #d4a000;
+}
+
+.btn-outline {
+  @apply btn border-2;
+  border-color: #e8b000;
+  color: #e8b000;
+}
+
+.btn-outline:hover {
+  background-color: #fffbe6;
+}
+
+/* カテゴリボタン */
+.category-btn {
+  @apply py-2 px-4 rounded-full text-sm font-medium transition-all duration-200;
+  background-color: #fff;
+  color: #606060;
+  border: 1px solid #ddd;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background-color: #e8b000;
+  color: #fffbe6;
+  border-color: #e8b000;
+}
+
+/* テーブル */
+.schedule-table {
+  @apply w-full border-collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+  @apply py-3 px-2 text-center;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule-table thead th {
+  background-color: #fff8d6;
+  color: #403f3b;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.schedule-table tbody td {
+  color: #606060;
+}
+
+/* 電話番号リンク */
+.tel-link {
+  @apply text-2xl md:text-3xl font-bold transition-colors;
+  color: #e8b000;
+}
+
+.tel-link:hover {
+  color: #d4a000;
+}
+
+/* セクション区切り */
+.section-divider {
+  @apply my-8;
+  border-top: 1px solid #f0e8d0;
+}
