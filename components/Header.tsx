@@ -20,9 +20,9 @@ export default function Header() {
       <div className="container">
         {/* ロゴ＆電話 */}
         <div className="flex items-center justify-between py-3 border-b border-cream-300 gap-2">
-          <a href="#" className="flex items-center gap-1 shrink-0">
-            <span className="text-2xl">🖐️</span>
-            <span className="font-bold text-base whitespace-nowrap" style={{ color: '#403f3b' }}>てのひら整骨院</span>
+          <a href="#" className="flex items-center gap-1 md:gap-2 shrink-0">
+            <span className="text-2xl md:text-3xl">🖐️</span>
+            <span className="font-bold text-base md:text-2xl whitespace-nowrap" style={{ color: '#403f3b' }}>てのひら整骨院</span>
           </a>
 
           <a href="tel:06-6781-6911" className="flex items-center gap-1 tel-link text-lg whitespace-nowrap shrink-0">
