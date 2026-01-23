@@ -71,10 +71,28 @@ npm run dev      # 開発サーバー起動
 npm run build    # ビルド
 ```
 
+## Instagram埋め込み設定
+
+LightWidgetを使用して最新投稿を表示:
+- **Photos to show**: 3（または6）
+- **Columns**: 3
+- **Responsive**: ON（必須）→ スマホで自動的に1〜2列に調整される
+- InstagramSection.tsx内のコメントアウト部分にiframeコードを配置
+
+```tsx
+<iframe
+  src="//lightwidget.com/widgets/YOUR_WIDGET_ID.html"
+  scrolling="no"
+  allowTransparency={true}
+  className="lightwidget-widget"
+  style={{width: '100%', border: 0, overflow: 'hidden'}}
+/>
+```
+
 ## TODO（クライアント素材待ち）
 
 - [ ] 部位別カテゴリの詳細テキスト・写真
-- [ ] InstagramのLightWidgetコード
+- [ ] InstagramのLightWidgetコード（Responsive: ON で設定すること）
 
 ## セキュリティ注意事項
 
