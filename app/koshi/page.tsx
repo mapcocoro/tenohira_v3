@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 // 写真プレースホルダーコンポーネント
 // スマホ: 常に1列で大きく表示
 // PC: 複数枚の場合は2列または3列
+// count > 1 の場合は「ラベル-1」「ラベル-2」のように連番を付与
 function PhotoPlaceholder({ label, count = 1 }: { label: string; count?: number }) {
   return (
     <div className="my-6">
@@ -14,7 +15,9 @@ function PhotoPlaceholder({ label, count = 1 }: { label: string; count?: number 
             key={i}
             className="bg-cream-200 rounded-lg h-48 flex items-center justify-center"
           >
-            <span className="text-sm text-gray-500 text-center px-2">{label}</span>
+            <span className="text-sm text-gray-500 text-center px-2">
+              {count > 1 ? `${label}-${i + 1}` : label}
+            </span>
           </div>
         ))}
       </div>
@@ -33,7 +36,7 @@ export default function KoshiPage() {
             <h1 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#403f3b' }}>
               腰
             </h1>
-            <p className="text-lg" style={{ color: '#606060' }}>
+            <p className="text-lg" style={{ color: '#4a4a4a' }}>
               （腰痛、ギックリ腰、坐骨神経痛、ヘルニア、脊柱管狭窄症、すべり症）
             </p>
           </div>
@@ -47,7 +50,7 @@ export default function KoshiPage() {
             {/* 問診・検査 */}
             <div className="mb-8">
               <h3 className="font-bold text-lg mb-4" style={{ color: '#403f3b' }}>（問診・検査）</h3>
-              <div className="space-y-4" style={{ color: '#606060' }}>
+              <div className="space-y-4" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">①</span>{' '}
                   どの部分が痛むか、どの動作が痛むかチェックします
@@ -67,7 +70,7 @@ export default function KoshiPage() {
             {/* 施術 */}
             <div className="mb-8">
               <h3 className="font-bold text-lg mb-4" style={{ color: '#403f3b' }}>（施術）</h3>
-              <div className="space-y-4" style={{ color: '#606060' }}>
+              <div className="space-y-4" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">①</span>{' '}
                   うつ伏せになって、足の長さの違いをチェックします。マッサージしながら痛いところを特定します。
@@ -75,7 +78,7 @@ export default function KoshiPage() {
               </div>
               <PhotoPlaceholder label="腰　脚長さチェック　マッサージ写真２" count={2} />
 
-              <div className="space-y-4 mt-6" style={{ color: '#606060' }}>
+              <div className="space-y-4 mt-6" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">②</span>{' '}
                   上向きになって、曲げると痛いか、捻ると痛いか、反ると痛いかをチェックします。
@@ -83,7 +86,7 @@ export default function KoshiPage() {
               </div>
               <PhotoPlaceholder label="腰　上向き検査写真３" count={1} />
 
-              <div className="space-y-4 mt-6" style={{ color: '#606060' }}>
+              <div className="space-y-4 mt-6" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">③</span>{' '}
                   カイロプラクティックで矯正します。
@@ -91,7 +94,7 @@ export default function KoshiPage() {
               </div>
               <PhotoPlaceholder label="腰　矯正写真４" count={1} />
 
-              <div className="space-y-4 mt-6" style={{ color: '#606060' }}>
+              <div className="space-y-4 mt-6" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">④</span>{' '}
                   もう一度動かして、痛みが軽減しているかチェックします。痛みが残る場合はさらに
@@ -100,7 +103,7 @@ export default function KoshiPage() {
               </div>
               <PhotoPlaceholder label="腰　胸椎　頸椎矯正写真５" count={1} />
 
-              <div className="space-y-4 mt-6" style={{ color: '#606060' }}>
+              <div className="space-y-4 mt-6" style={{ color: '#4a4a4a' }}>
                 <p>
                   <span className="font-bold text-gold-500">⑤</span>{' '}
                   最後に座って、痛かった動きが楽になったら施術完了です。
@@ -111,7 +114,7 @@ export default function KoshiPage() {
 
             {/* ギックリ腰の補足 */}
             <div className="bg-cream-100 p-4 rounded-lg mb-6">
-              <p style={{ color: '#606060' }}>
+              <p style={{ color: '#4a4a4a' }}>
                 <span className="text-gold-500 font-bold">★</span>
                 ギックリ腰で状態の悪い方は超音波コンビネーション治療を使って炎症を和らげ、
                 テーピングで固定します。
@@ -119,18 +122,18 @@ export default function KoshiPage() {
               <PhotoPlaceholder label="腰　超音波　テーピング写真７" count={2} />
             </div>
 
-            <p className="mb-6" style={{ color: '#606060' }}>
+            <p className="mb-6" style={{ color: '#4a4a4a' }}>
               次回来院時、動きや痛みが軽減されているか確認して、軽減されていれば保険内で治療していきます。
             </p>
             <PhotoPlaceholder label="腰　施術完了写真８" count={1} />
 
             <div className="bg-cream-100 p-4 rounded-lg mt-6">
-              <p className="mb-4" style={{ color: '#606060' }}>
+              <p className="mb-4" style={{ color: '#4a4a4a' }}>
                 <span className="text-gold-500 font-bold">★</span>
                 カイロプラクティックや矯正が苦手な方、保険内で治療したい方は受付までご相談下さい。
                 保険内でもしっかり治療させて頂きます。
               </p>
-              <p style={{ color: '#606060' }}>
+              <p style={{ color: '#4a4a4a' }}>
                 通院の回数は患者様の来院できる範囲で大丈夫ですので、ご相談下さい。
               </p>
             </div>
@@ -144,7 +147,7 @@ export default function KoshiPage() {
 
             <div className="mb-6">
               <h3 className="font-bold text-lg mb-4" style={{ color: '#403f3b' }}>（施術）</h3>
-              <div className="space-y-4" style={{ color: '#606060' }}>
+              <div className="space-y-4" style={{ color: '#4a4a4a' }}>
                 <p>
                   原因となる腰の骨４番目、５番目、骨盤をカイロプラクティックで矯正します。
                 </p>
@@ -157,7 +160,7 @@ export default function KoshiPage() {
               </div>
               <PhotoPlaceholder label="坐骨神経痛　アクティベーター写真１" count={1} />
 
-              <p className="mt-6" style={{ color: '#606060' }}>
+              <p className="mt-6" style={{ color: '#4a4a4a' }}>
                 軽減しない場合は超音波コンビネーション治療で炎症を和らげ、テーピング固定もします。
               </p>
               <p className="mt-2 text-sm" style={{ color: '#888888' }}>
@@ -174,7 +177,7 @@ export default function KoshiPage() {
 
             <div className="mb-6">
               <h3 className="font-bold text-lg mb-4" style={{ color: '#403f3b' }}>（施術）</h3>
-              <div className="space-y-4" style={{ color: '#606060' }}>
+              <div className="space-y-4" style={{ color: '#4a4a4a' }}>
                 <p>
                   症状によりますが、腰の骨はあまり触らない方がいい場合が多いので、
                   ブロックというソフトな器具を使用します。（保険内）
