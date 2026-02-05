@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 // 部位カテゴリのデータ
 const categories = [
@@ -10,6 +11,7 @@ const categories = [
     icon: '🦒',
     description: '首の痛み・寝違え・ストレートネックなど',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'shoulder',
@@ -17,6 +19,7 @@ const categories = [
     icon: '💪',
     description: '肩こり・四十肩・五十肩など',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'pelvis',
@@ -24,13 +27,15 @@ const categories = [
     icon: '🦴',
     description: '骨盤矯正・産後の骨盤ケアなど',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'back',
-    name: '腰痛',
+    name: '腰',
     icon: '🔙',
-    description: '腰痛・ぎっくり腰・椎間板ヘルニアなど',
-    details: '※詳細テキストと写真を追加予定',
+    description: 'ギックリ腰、ヘルニア',
+    details: '',
+    link: '/koshi',
   },
   {
     id: 'spine',
@@ -38,6 +43,7 @@ const categories = [
     icon: '🏥',
     description: '腰椎の痛み・背骨のゆがみなど',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'hip',
@@ -45,6 +51,7 @@ const categories = [
     icon: '🦵',
     description: '股関節の痛み・可動域の改善など',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'knee',
@@ -52,6 +59,7 @@ const categories = [
     icon: '🦿',
     description: '膝の痛み・変形性膝関節症など',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'wrist',
@@ -59,6 +67,7 @@ const categories = [
     icon: '✋',
     description: '手首の痛み・腱鞘炎など',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
   {
     id: 'ankle',
@@ -66,13 +75,18 @@ const categories = [
     icon: '🦶',
     description: '足首の痛み・足底筋膜炎など',
     details: '※詳細テキストと写真を追加予定',
+    link: null,
   },
 ];
 
 export default function TreatmentCategorySection() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const handleCategoryClick = (id: string) => {
+  const handleCategoryClick = (id: string, link: string | null) => {
+    if (link) {
+      // リンクがある場合はページ遷移（Linkコンポーネントで処理）
+      return;
+    }
     setSelectedCategory(selectedCategory === id ? null : id);
   };
 
@@ -90,47 +104,69 @@ export default function TreatmentCategorySection() {
           {categories.map((category) => (
             <div key={category.id}>
               {/* カテゴリボタン */}
-              <button
-                onClick={() => handleCategoryClick(category.id)}
-                className={`w-full text-left p-4 rounded-xl transition-all duration-200 ${
-                  selectedCategory === category.id
-                    ? 'bg-gold-400 text-white shadow-hover'
-                    : 'bg-white shadow-card hover:shadow-hover'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{category.icon}</span>
-                  <div className="flex-1">
-                    <h3 className={`font-bold text-lg ${
-                      selectedCategory === category.id ? 'text-white' : ''
-                    }`} style={selectedCategory !== category.id ? { color: '#403f3b' } : {}}>
-                      {category.name}
-                    </h3>
-                    <p className={`text-sm ${
-                      selectedCategory === category.id ? 'text-cream-100' : ''
-                    }`} style={selectedCategory !== category.id ? { color: '#888888' } : {}}>
-                      {category.description}
-                    </p>
-                  </div>
-                  <span className={`text-xl transition-transform duration-200 ${
-                    selectedCategory === category.id ? 'rotate-180' : ''
-                  }`}>
-                    ▼
-                  </span>
-                </div>
-              </button>
-
-              {/* 詳細コンテンツ（展開時） */}
-              {selectedCategory === category.id && (
-                <div className="mt-2 p-4 bg-white rounded-xl shadow-card">
-                  <div className="text-center py-8">
-                    {/* 写真プレースホルダー */}
-                    <div className="w-full max-w-md mx-auto h-48 bg-cream-200 rounded-lg mb-4 flex items-center justify-center">
-                      <span className="text-4xl">{category.icon}</span>
+              {category.link ? (
+                <Link
+                  href={category.link}
+                  className="w-full text-left p-4 rounded-xl transition-all duration-200 bg-white shadow-card hover:shadow-hover block"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{category.icon}</span>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg" style={{ color: '#403f3b' }}>
+                        {category.name}
+                      </h3>
+                      <p className="text-sm" style={{ color: '#888888' }}>
+                        {category.description}
+                      </p>
                     </div>
-                    <p style={{ color: '#606060' }}>{category.details}</p>
+                    <span className="text-xl">→</span>
                   </div>
-                </div>
+                </Link>
+              ) : (
+                <>
+                  <button
+                    onClick={() => handleCategoryClick(category.id, category.link)}
+                    className={`w-full text-left p-4 rounded-xl transition-all duration-200 ${
+                      selectedCategory === category.id
+                        ? 'bg-gold-400 text-white shadow-hover'
+                        : 'bg-white shadow-card hover:shadow-hover'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{category.icon}</span>
+                      <div className="flex-1">
+                        <h3 className={`font-bold text-lg ${
+                          selectedCategory === category.id ? 'text-white' : ''
+                        }`} style={selectedCategory !== category.id ? { color: '#403f3b' } : {}}>
+                          {category.name}
+                        </h3>
+                        <p className={`text-sm ${
+                          selectedCategory === category.id ? 'text-cream-100' : ''
+                        }`} style={selectedCategory !== category.id ? { color: '#888888' } : {}}>
+                          {category.description}
+                        </p>
+                      </div>
+                      <span className={`text-xl transition-transform duration-200 ${
+                        selectedCategory === category.id ? 'rotate-180' : ''
+                      }`}>
+                        ▼
+                      </span>
+                    </div>
+                  </button>
+
+                  {/* 詳細コンテンツ（展開時） */}
+                  {selectedCategory === category.id && (
+                    <div className="mt-2 p-4 bg-white rounded-xl shadow-card">
+                      <div className="text-center py-8">
+                        {/* 写真プレースホルダー */}
+                        <div className="w-full max-w-md mx-auto h-48 bg-cream-200 rounded-lg mb-4 flex items-center justify-center">
+                          <span className="text-4xl">{category.icon}</span>
+                        </div>
+                        <p style={{ color: '#606060' }}>{category.details}</p>
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           ))}
